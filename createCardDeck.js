@@ -3,31 +3,42 @@
  * @returns {Array} deck - a deck of cards
  */
 const getDeck = () => {
-  const deck = []
+  const deck = new Array()
   const suits = ['hearts', 'spades', 'clubs', 'diamonds']
 
-  for (let index = 0; index < suits.length; index++) {
+  for (let index = 0; index < suits.length; index++) 
+  {
     // create an array of 13 objects
-    for (let j = 1; j <= 13; j++) {
+    for (let j = 1; j <= 13; j++) 
+    {
       // for each loop, push a card object to the deck
 
       // special cases for when j > 10
-      const displayVal = ''
+      let displayVal = ''
 
-      switch (j) {
-        case j === 1:
+      switch (j) 
+      {
+        case 1:
           displayVal = 'Ace'
           break
-        case j > 1 && j <= 10:
-          displayVal = j
+        case 2:
+        case 3:
+        case 4:
+        case 5:
+        case 6:
+        case 7:
+        case 8:
+        case 9:
+        case 10:
+          displayVal = `${j}`
           break
-        case j === 11:
+        case 11:
           displayVal = 'Jack'
           break
-        case j === 12:
+        case 12:
           displayVal = 'Queen'
           break
-        case j === 13:
+        case 13:
           displayVal = 'King'
           break
       }
@@ -38,17 +49,28 @@ const getDeck = () => {
         suit: suits[index],
       }
 
-      if (displayVal === 'Ace') {
-        card.val = 11
+      switch (displayVal) {
+        case 'Jack':
+        case 'Queen':
+        case 'King':
+          card.val = 10
+          break
+
+        case 'Ace':
+          card.val = 11
+          break
       }
 
       deck.push(card)
+      //console.log(deck)
     }
   }
+  return deck;
 }
 
 // CHECKS
 const deck = getDeck()
+
 console.log(`Deck length equals 52? ${deck.length === 52}`)
 
 const randomCard = deck[Math.floor(Math.random() * 52)]
@@ -66,3 +88,9 @@ const cardHasDisplayVal =
   randomCard.displayVal &&
   typeof randomCard.displayVal === 'string'
 console.log(`Random card has display value? ${cardHasDisplayVal}`)
+
+let hand = [];
+const index = Math.floor(Math.random() * deck.length);
+hand = deck[index];
+
+console.log(hand)

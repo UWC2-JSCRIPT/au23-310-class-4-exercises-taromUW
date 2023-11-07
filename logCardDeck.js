@@ -58,4 +58,14 @@ const cards = [
  *
  * @param {array} deck A deck of cards
  */
-const logCardDeck = deck => {};
+const logCardDeck = deck => {
+
+  for (let i=0; i<deck.length; i++)
+  {
+    console.log(`The ${deck[i].displayVal} of ${deck[i].suit} has a value of ${deck[i].val}`)
+  }
+  //console.log(deck)
+  //return deck.map(card => card.displayVal);
+};
+
+logCardDeck(cards);
